@@ -202,4 +202,12 @@ extern "C" {
 
     #[wasm_bindgen(method, js_name = inAnyRange)]
     pub fn in_any_range(this: &WhereClause, ranges: JsValue, options: JsValue) -> Collection;
+
+    pub type Transaction;
+
+    #[wasm_bindgen(method)]
+    pub fn table(this: &Transaction, name: JsValue) -> Table;
+
+    #[wasm_bindgen(method)]
+    pub fn abort(this: &Transaction);
 }
