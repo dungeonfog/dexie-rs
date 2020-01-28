@@ -79,6 +79,15 @@ extern "C" {
     #[wasm_bindgen(method, js_name = bulkGet)]
     pub fn bulk_get(this: &Table, keys: JsValue) -> Promise;
 
+    #[wasm_bindgen(method, js_name = orderBy)]
+    pub fn order_by(this: &Table, key: JsValue) -> Collection;
+
+    #[wasm_bindgen(method)]
+    pub fn limit(this: &Table, limit: JsValue) -> Collection;
+
+    #[wasm_bindgen(method)]
+    pub fn reverse(this: &Table) -> Collection;
+
     pub type Collection;
 
     #[wasm_bindgen(method)]
