@@ -24,6 +24,9 @@ extern "C" {
     #[wasm_bindgen(method, js_class = default)]
     pub fn transaction(this: &Dexie, mode: JsValue, tables: JsValue, callback: JsValue) -> Promise;
 
+    #[wasm_bindgen(method)]
+    pub fn on(this: &Dexie, event_type: &str, subscriberFunction: &Closure<dyn FnMut(JsValue, JsValue)>) -> Dexie;
+
     pub type Version;
 
     #[wasm_bindgen(method)]
@@ -219,4 +222,11 @@ extern "C" {
 
     #[wasm_bindgen(method)]
     pub fn abort(this: &Transaction);
+}
+
+#[wasm_bindgen(module = "dexie-observable")]
+extern "C" {
+    #[no_mangle]
+    #[wasm_bindgen(js_name = default)]
+    pub fn observable(db: &Dexie); // don't actually call this, this is only so that dexie-observable is included by wasm-bindgen
 }
