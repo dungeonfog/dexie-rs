@@ -60,6 +60,9 @@ extern "C" {
 
     #[wasm_bindgen(method, js_name = toCollection)]
     pub fn to_collection(this: &Table) -> Collection;
+    
+    #[wasm_bindgen(method, js_name = toArray)]
+    pub fn to_array(this: &Table) -> Promise;
 
     #[wasm_bindgen(method)]
     pub fn count(this: &Table) -> Promise;
