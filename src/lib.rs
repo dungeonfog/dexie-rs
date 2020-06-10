@@ -27,6 +27,9 @@ extern "C" {
     #[wasm_bindgen(method)]
     pub fn on(this: &Dexie, event_type: &str, subscriberFunction: &Closure<dyn FnMut(JsValue, JsValue)>) -> Dexie;
 
+    #[wasm_bindgen(method, js_class = default)]
+    pub fn exists(this: &Dexie, name: JsValue) -> Promise;
+
     pub type Version;
 
     #[wasm_bindgen(method)]
