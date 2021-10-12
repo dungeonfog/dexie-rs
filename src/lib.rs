@@ -28,7 +28,11 @@ extern "C" {
     pub fn transaction(this: &Dexie, mode: JsValue, tables: JsValue, callback: JsValue) -> Promise;
 
     #[wasm_bindgen(method)]
-    pub fn on(this: &Dexie, event_type: &str, subscriberFunction: &Closure<dyn FnMut(JsValue, JsValue)>) -> Dexie;
+    pub fn on(
+        this: &Dexie,
+        event_type: &str,
+        subscriberFunction: &Closure<dyn FnMut(JsValue, JsValue)>,
+    ) -> Dexie;
 
     pub type Version;
 
@@ -63,7 +67,7 @@ extern "C" {
 
     #[wasm_bindgen(method, js_name = toCollection)]
     pub fn to_collection(this: &Table) -> Collection;
-    
+
     #[wasm_bindgen(method, js_name = toArray)]
     pub fn to_array(this: &Table) -> Promise;
 
@@ -81,7 +85,7 @@ extern "C" {
 
     #[wasm_bindgen(method, js_name = bulkPut)]
     pub fn bulk_put(this: &Table, items: JsValue) -> Promise;
-    
+
     #[wasm_bindgen(method, js_name = bulkDelete)]
     pub fn bulk_delete(this: &Table, keys: JsValue) -> Promise;
 
@@ -146,10 +150,10 @@ extern "C" {
 
     #[wasm_bindgen(method)]
     pub fn limit(this: &Collection, count: JsValue) -> Collection;
-    
+
     #[wasm_bindgen(method)]
     pub fn modify(this: &Collection, changes: JsValue) -> Promise;
-    
+
     #[wasm_bindgen(method, js_name = modify)]
     pub fn modify_fn(this: &Collection, changes: Function) -> Promise;
 
@@ -192,7 +196,13 @@ extern "C" {
     pub fn any_of_ignore_case(this: &WhereClause, array: JsValue) -> Collection;
 
     #[wasm_bindgen(method)]
-    pub fn between(this: &WhereClause, lower_bound: JsValue, upper_bound: JsValue, include_lower: JsValue, include_upper: JsValue) -> Collection;
+    pub fn between(
+        this: &WhereClause,
+        lower_bound: JsValue,
+        upper_bound: JsValue,
+        include_lower: JsValue,
+        include_upper: JsValue,
+    ) -> Collection;
 
     #[wasm_bindgen(method)]
     pub fn equals(this: &WhereClause, key: JsValue) -> Collection;
@@ -232,6 +242,7 @@ extern "C" {
 
 #[wasm_bindgen(module = "dexie-observable")]
 extern "C" {
+    #[cfg(feature = "observable")]
     #[no_mangle]
     #[wasm_bindgen(js_name = default)]
     pub fn observable(db: &Dexie); // don't actually call this, this is only so that dexie-observable is included by wasm-bindgen
